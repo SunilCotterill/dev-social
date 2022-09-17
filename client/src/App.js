@@ -12,6 +12,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
+import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 
 if(localStorage.token){
@@ -33,9 +36,11 @@ const App = () => {
       
         <section className="container">
           <Alert />
-        <Routes>
-          <Route path='/register' element={<Register />} exact />
-          <Route path='/Login' element={<Login />} exact />
+          <Routes>
+            <Route path='/register' element={<Register />} exact />
+            <Route path='/login' element={<Login />} exact />
+            <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} exact />
+            <Route path='/create-profile' element={<PrivateRoute><CreateProfile /></PrivateRoute>} exact />
           </Routes>
         </section>
       
